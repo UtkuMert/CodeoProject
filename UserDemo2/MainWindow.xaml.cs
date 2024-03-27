@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using System.Xml.Linq;
 using UserDemo2.Business;
 using UserDemo2.DAL;
+using UserDemo2.View;
 using UserDemo2.ViewModel;
 
 namespace UserDemo2
@@ -38,17 +39,11 @@ namespace UserDemo2
             //LoadData();
           
         }
-        public void LoadData()
+        private void LoadData()
         {
             users = UserDal.GetAll();
             dataGrid.ItemsSource = users;
-
-            //dataGrid.ItemsSource = mainWindowViewModel.Users;
-
-
         }
-
-
 
         private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -62,7 +57,7 @@ namespace UserDemo2
             else
             {
                 btnDelete.IsEnabled = false;
-                btnEdit.IsEnabled = true;
+                btnEdit.IsEnabled = false;
             }
             
         }
@@ -75,8 +70,6 @@ namespace UserDemo2
             });
             MessageBox.Show("Deleted");
            LoadData();
-
-           
             
         }
 
@@ -86,12 +79,18 @@ namespace UserDemo2
             EditUserView editUserView = new EditUserView(selected_row);
 
             editUserView.ShowDialog();
+
+            LoadData();
         }
 
-        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-              LoginView loginView = new LoginView();
-             loginView.Show();
+            AddUserView addUserView = new AddUserView();
+
+            addUserView.ShowDialog();
+
+            LoadData();
         }
+
     }
 }

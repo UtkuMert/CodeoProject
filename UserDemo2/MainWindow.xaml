@@ -27,17 +27,31 @@
                 </DataGrid.Columns>
             </DataGrid>
 
-            <viewcontrol:AddFormUserControl Grid.Column="1" />
-
+            <viewcontrol:LoginUserControl  Grid.Column="1" Height="350"/>
         </Grid>
 
-        <StackPanel Grid.Row="1" Width="600" HorizontalAlignment="Left">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Name="btnLogin" Click="btnLogin_Click"  Content="Login" Width="100" Height="30" Margin="5" Background="Brown" />
-                <Button Name="btnDelete" Click="btnDelete_Click"  Content="Delete" Width="100" Height="30" Margin="5" Background="#FFE00A0A" IsEnabled="False" />
-                <Button Name="btnEdit" Click="btnEdit_Click"  Content="Edit" Width="100" Height="30" Margin="5" Background="#FF298FED" IsEnabled="False" />
-            </StackPanel>
-        </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="575" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <StackPanel >
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <StackPanel.Background>
+                            <ImageBrush/>
+                        </StackPanel.Background>
+                        <Button Name="btnAdd" Click="btnAdd_Click"  Content="Add" Width="100" Height="30" Margin="5" Background="#FF150C84" Foreground="White" />
+                        <Button Name="btnEdit" Click="btnEdit_Click"  Content="Edit" Width="100" Height="30"  Background="{DynamicResource {x:Static SystemColors.MenuHighlightBrushKey}}" IsEnabled="false" Foreground="White" />
+                        <Button Name="btnDelete" Click="btnDelete_Click"  Content="Delete" Width="100" Height="30" Margin="5" Background="#FF611313" Foreground="White" IsEnabled="False"  />
+                       
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Grid>
+
+
 
           
 

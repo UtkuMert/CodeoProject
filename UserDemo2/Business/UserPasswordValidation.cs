@@ -12,21 +12,16 @@ namespace UserDemo2.Business
     {
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-            //string? password = value as string;
+           
             if ((string)value == "")
             {
                 return new ValidationResult(false, "Password cannot be null.");
             }
 
-            if(value?.ToString().Length < 3)
+            if (value?.ToString().Length is < 4 or > 25)
             {
-                return new ValidationResult(false, "More than 2.");
+                return new ValidationResult(false, "Password should be between range 4-25");
             }
-
-            //if (password?.Length < 3 || password?.Length > 25)
-            //{
-            //    return new ValidationResult(false, "Password should be between range 3-25");
-            //}
 
             return ValidationResult.ValidResult;
         }

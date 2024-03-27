@@ -6,18 +6,39 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Xml.Linq;
 using UserDemo2.DAL;
 
 namespace UserDemo2.Business
 {
-    public class LoginUserValidation : ValidationRule
+    public static class LoginUserValidation 
     {
 
-
-        public override ValidationResult Validate(object value, CultureInfo cultureInfo)
+        public static bool LoginValidation(string name, string password)
         {
-            return ValidationResult.ValidResult;
+            using (UserDbContext db = new UserDbContext())
+            {
+                var user = db.Users.FirstOrDefault(x => x.Name == name);
+
+                if (user != null)
+                {
+                    if (user.Password == password)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                       return false;
+                    }
+                }
+                else
+                {
+                    return false;
+
+                }
+            }
         }
+      
     }
 }
 

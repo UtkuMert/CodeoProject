@@ -10,27 +10,27 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 using UserDemo2.DAL;
+using UserDemo2.ViewModel;
 
-namespace UserDemo2.ViewModel.UserControls
+namespace UserDemo2.View
 {
     /// <summary>
-    /// Interaction logic for AddFormUserControl.xaml
+    /// Interaction logic for AddUserView.xaml
     /// </summary>
-    public partial class AddFormUserControl : UserControl
+    public partial class AddUserView : Window
     {
-        public AddFormUserControl()
+        public AddUserView()
         {
             InitializeComponent();
             AddUserViewModel addUserViewModel = new AddUserViewModel();
+            this.DataContext = addUserViewModel;
         }
-
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-
+           
             User user = new User
             {
                 Name = tbxName.Text,
@@ -46,9 +46,9 @@ namespace UserDemo2.ViewModel.UserControls
             {
                 UserDal.Add(user);
                 MessageBox.Show("User added!");
-                //LoadData();
-                tbxName.Text = "";
-                tbxPassword.Text = "";
+             
+
+                this.Close();
             }
         }
 
@@ -65,6 +65,5 @@ namespace UserDemo2.ViewModel.UserControls
                 btnAdd.IsEnabled = false;
             }
         }
-
     }
 }

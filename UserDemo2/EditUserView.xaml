@@ -6,16 +6,16 @@
         xmlns:validation="clr-namespace:UserDemo2.Business"
         xmlns:local="clr-namespace:UserDemo2"
         mc:Ignorable="d"
-        Title="EditUserView" Height="400" Width="250">
-    <Grid>
-        <StackPanel>
+        Title="Edit User" Height="400" Width="250">
+    <Grid Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+        <StackPanel VerticalAlignment="Center" Background="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}">
             <StackPanel>
-                <TextBlock  HorizontalAlignment="Center" Text="Name"  FontSize="16" Margin="5" />
+                <TextBlock  HorizontalAlignment="Center" Text="Name"  FontSize="16" Margin="5" Foreground="White" />
                 <TextBox  Name="tbxEditName" Width="150" Height="30" Margin="5">
                     <TextBox.Text>
                         <Binding Path="EditName" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
                             <Binding.ValidationRules>
-                                <validation:EditUsernameValidation />
+                                <validation:UserValidation />
                             </Binding.ValidationRules>
                         </Binding>
                     </TextBox.Text>
@@ -33,11 +33,11 @@
                 </TextBox>
             </StackPanel>
             <StackPanel >
-                <TextBlock Text="Password" HorizontalAlignment="Center" FontSize="16" Margin="5" />
+                <TextBlock Text="Password" HorizontalAlignment="Center" FontSize="16" Margin="5" Foreground="White" />
                 <TextBox x:Name="tbxEditPassword" Text="{Binding EditPassword}" Width="150" Height="30" Margin="5" />
             </StackPanel>
             <StackPanel>
-                <Button Name="btnUpdate" Click="btnUpdate_Click" Content="Update" HorizontalAlignment="Right" Width="75" Height="30" Margin="10" />
+                <Button Name="btnUpdate" Click="btnUpdate_Click" Content="Update" HorizontalAlignment="Right" Width="75" Height="30" Margin="10" Background="{DynamicResource {x:Static SystemColors.MenuHighlightBrushKey}}" Foreground="White" />
             </StackPanel>
         </StackPanel>
     </Grid>

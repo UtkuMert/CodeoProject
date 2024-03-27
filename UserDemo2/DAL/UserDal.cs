@@ -11,13 +11,6 @@ namespace UserDemo2.DAL
 {
     public static class UserDal
     {
-        //public static List<User> GetAll()
-        //{
-        //    using (UserDbContext db = new UserDbContext())
-        //    {
-        //        return db.Users.ToList();
-        //    }
-        //}
 
         public static ObservableCollection<User> GetAll()
         {
@@ -33,8 +26,8 @@ namespace UserDemo2.DAL
             using (UserDbContext db = new UserDbContext())
             {
                 
-                db.Add(user);
-                db.SaveChanges();
+                db.Users.AddAsync(user);
+                db.SaveChangesAsync();  
             }
         }
 
@@ -45,7 +38,7 @@ namespace UserDemo2.DAL
                
                 var entity = db.Entry(user);
                 entity.State = EntityState.Modified;
-                db.SaveChanges();
+                db.SaveChangesAsync();
             }
         }
 
@@ -55,7 +48,7 @@ namespace UserDemo2.DAL
             {
                 var entity = db.Entry(user);
                 entity.State = EntityState.Deleted;
-                db.SaveChanges();
+                db.SaveChangesAsync();
             }
         }
     }
