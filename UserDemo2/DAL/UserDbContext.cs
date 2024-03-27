@@ -13,13 +13,15 @@ namespace UserDemo2.DAL
     public class UserDbContext : DbContext
     {
         private readonly IEncryptionProvider _provider;
+        public DbSet<User> Users { get; set; }
+
+        public DbSet<UserProfile> UserProfiles { get; set; }
 
         public UserDbContext()
             :base()
         {
             this._provider = new GenerateEncryptionProvider("example_encrypt_key");
         }
-        public DbSet<User> Users { get; set; }
        
 
         public string path = @"D:\AutoCase Database.db";
@@ -27,11 +29,7 @@ namespace UserDemo2.DAL
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
             => optionsBuilder.UseSqlite($"Data Source={path}");
 
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.UseEncryption(this._provider);
-        //    base.OnModelCreating(modelBuilder);
-        //}
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

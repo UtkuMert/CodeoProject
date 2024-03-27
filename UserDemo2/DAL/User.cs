@@ -19,5 +19,9 @@ namespace UserDemo2.DAL
         [Required(ErrorMessage = "Password cannot be blank")]
         [Encrypted]
         public string Password { get; set; }
+
+        public int UserProfileId { get; set; }
+
+        public UserProfile UserProfile { get; set; }
     }
 }
