@@ -24,8 +24,7 @@ namespace UserDemo2
     /// </summary>
     public partial class MainWindow : Window
     {
-       
-
+        private User admin;
         public ObservableCollection<User> users;
        
         public User? selected_row;
@@ -35,14 +34,25 @@ namespace UserDemo2
             InitializeComponent();
             MainWindowViewModel mainWindowViewModel = new MainWindowViewModel();
             this.DataContext = mainWindowViewModel;
-            dataGrid.ItemsSource = mainWindowViewModel.Users;
-            //LoadData();
-          
+            dataGridUser.ItemsSource = mainWindowViewModel.Users;
+        }
+
+        public MainWindow(User adminUser)
+        {
+            InitializeComponent();
+            admin = adminUser;
+
+            MessageBox.Show(adminUser.UserProfile.RoleName);
+
+            InitializeComponent();
+            MainWindowViewModel mainWindowViewModel = new MainWindowViewModel();
+            this.DataContext = mainWindowViewModel;
+            dataGridUser.ItemsSource = mainWindowViewModel.Users;
         }
         private void LoadData()
         {
             users = UserDal.GetAll();
-            dataGrid.ItemsSource = users;
+            dataGridUser.ItemsSource = users;
         }
 
         private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -92,5 +102,10 @@ namespace UserDemo2
             LoadData();
         }
 
+        private void btnAddProfile_Click(object sender, RoutedEventArgs e)
+        {
+            AddProfileView addProfileView = new AddProfileView();
+            addProfileView.ShowDialog();
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +22,7 @@ namespace UserDemo2.View
     /// </summary>
     public partial class AddUserView : Window
     {
+        public ObservableCollection<UserProfile> userProfiles;
         public AddUserView()
         {
             InitializeComponent();
@@ -30,11 +32,15 @@ namespace UserDemo2.View
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-           
+
+            
+            UserProfile profil = UserProfileDal.GetUserProfileByName(cbxRole.Text);
+            
             User user = new User
             {
-                Name = tbxName.Text,
-                Password = tbxPassword.Text,
+               Name = tbxName.Text,
+               Password = tbxPassword.Text,
+               UserProfileId = profil.Id,
             };
 
 
@@ -46,7 +52,7 @@ namespace UserDemo2.View
             {
                 UserDal.Add(user);
                 MessageBox.Show("User added!");
-             
+
 
                 this.Close();
             }
@@ -64,6 +70,11 @@ namespace UserDemo2.View
             {
                 btnAdd.IsEnabled = false;
             }
+        }
+
+        private void cbxRole_Loaded(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

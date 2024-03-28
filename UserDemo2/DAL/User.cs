@@ -13,6 +13,7 @@ namespace UserDemo2.DAL
     [Index(nameof(User.Password))]
     public class User
     {
+
         public int Id { get; set; }
         [Required(ErrorMessage = "Name cannot be blank!")]
         public string Name { get; set; }
@@ -22,6 +23,6 @@ namespace UserDemo2.DAL
 
         public int UserProfileId { get; set; }
 
-        public UserProfile UserProfile { get; set; }
+        public UserProfile UserProfile { get; set; } 
     }
 }

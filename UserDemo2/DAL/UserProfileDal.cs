@@ -5,65 +5,62 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 
 namespace UserDemo2.DAL
 {
-    public static class UserDal
+    class UserProfileDal
     {
-
-        public static ObservableCollection<User> GetAll()
+        public static ObservableCollection<UserProfile> GetAll()
         {
             using (UserDbContext db = new UserDbContext())
             {
-                return new ObservableCollection<User>(db.Users.ToList());
+                return new ObservableCollection<UserProfile>(db.UserProfiles.ToList());
             }
         }
 
-        public static User GetUserByName(string username)
+        public static UserProfile GetUserProfileByName(string name)
         {
             using (UserDbContext db = new UserDbContext())
             {
-                return db.Users.FirstOrDefault(x => x.Name == username);
-            }
-
-        }
-        public static User GetUserById(int id)
-        {
-            using (UserDbContext db = new UserDbContext())
-            {
-                return db.Users.FirstOrDefault(x => x.Id == id);
-            }
-
-        }
-
-
-        public static void Add(User user)
-        {
-            using (UserDbContext db = new UserDbContext())
-            {
-                
-                db.Users.AddAsync(user);
-                db.SaveChangesAsync();  
+                return db.UserProfiles.FirstOrDefault(x => x.RoleName == name);
             }
         }
 
-        public static void Update(User user)
+        public static UserProfile GetUserProfileById(int id)
         {
             using (UserDbContext db = new UserDbContext())
             {
-               
-                var entity = db.Entry(user);
+                return db.UserProfiles.FirstOrDefault(x => x.Id == id);
+            }
+        }
+
+
+        public static void Add(UserProfile userProfile)
+        {
+            using (UserDbContext db = new UserDbContext())
+            {
+
+                db.UserProfiles.AddAsync(userProfile);
+                db.SaveChangesAsync();
+            }
+        }
+
+        public static void Update(UserProfile userProfile)
+        {
+            using (UserDbContext db = new UserDbContext())
+            {
+
+                var entity = db.Entry(userProfile);
                 entity.State = EntityState.Modified;
                 db.SaveChangesAsync();
             }
         }
 
-        public static void Delete(User user)
+        public static void Delete(UserProfile userProfile)
         {
             using (UserDbContext db = new UserDbContext())
             {
-                var entity = db.Entry(user);
+                var entity = db.Entry(userProfile);
                 entity.State = EntityState.Deleted;
                 db.SaveChangesAsync();
             }

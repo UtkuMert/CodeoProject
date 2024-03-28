@@ -11,10 +11,11 @@ namespace UserDemo2.ViewModel
     public class MainWindowViewModel
     {
         public ObservableCollection<User> Users { get; private set; }
-
+        public ObservableCollection<UserProfile> UserProfiles { get; set; } = new ObservableCollection<UserProfile>(UserProfileDal.GetAll());
         public MainWindowViewModel() 
         {
             Users = UserDal.GetAll();
+            
         }
 
 

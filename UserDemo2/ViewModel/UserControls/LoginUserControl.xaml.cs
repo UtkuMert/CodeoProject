@@ -36,14 +36,17 @@ namespace UserDemo2.ViewModel.UserControls
             if (LoginUserValidation.LoginValidation(tbxLoginName.Text, tbxLoginPassword.Text))
             {
                 string name = tbxLoginName.Text;
-              
-                LoginBox.Visibility = Visibility.Hidden;
-                btnLogin.Visibility = Visibility.Hidden;
 
-                tbWelcome.Visibility = Visibility.Visible;
-                btnLogout.Visibility = Visibility.Visible;
+                using (var db = new UserDbContext())
+                {
+                    User user = db.Users.FirstOrDefault(x => x.Name == name);
 
-                tbWelcome.Text = "Welcome " + name;
+                    if (user.UserProfile.IsAdmin)
+                    {
+                        MainWindow mainWindow = new MainWindow();
+                        mainWindow.Show();
+                    }
+                }
                
             }
             else

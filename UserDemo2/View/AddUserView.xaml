@@ -52,6 +52,9 @@
                     </TextBox.Style>
                 </TextBox>
             </StackPanel>
+            <StackPanel>
+                <ComboBox x:Name="cbxRole" ItemsSource="{Binding UserProfiles}" DisplayMemberPath="RoleName" Width="100" Loaded="cbxRole_Loaded" SelectedIndex="1"/>
+            </StackPanel>
             <StackPanel Width="200" Margin="20">
                 <Button Name="btnAdd" Grid.Row="4" Width="100" Height="30" Content="Add" HorizontalAlignment="Right" VerticalContentAlignment="Center" FontSize="16" Click="btnAdd_Click" IsEnabled="False" Background="{DynamicResource {x:Static SystemColors.MenuHighlightBrushKey}}" Foreground="White" />
             </StackPanel>
