@@ -49,6 +49,9 @@ namespace UserDemo2
             this.DataContext = mainWindowViewModel;
             dataGridUser.ItemsSource = mainWindowViewModel.Users;
         }
+
+
+
         private void LoadData()
         {
             users = UserDal.GetAll();

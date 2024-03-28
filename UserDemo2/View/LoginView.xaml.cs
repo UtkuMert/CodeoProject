@@ -61,10 +61,11 @@ namespace UserDemo2.View
                     }
                     else
                     {
-                        MessageBox.Show("Welcome User");
+                        UserWindowView view = new UserWindowView(user);
+                        view.Show();
+                        this.Close();
                     }
                 
-
             }
             else
             {
